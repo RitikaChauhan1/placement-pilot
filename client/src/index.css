@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light Mode CSS Variables */
+  --background: #f8fafc;
+  --surface: #ffffff;
+  --surface-secondary: #f1f5f9;
+  --surface-hover: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --border: #e2e8f0;
+  --border-subtle: #f1f5f9;
+  --primary: #4f46e5;
+}
+
+.dark {
+  /* Dark Mode CSS Variables (Professional SaaS palette) */
+  --background: #0b0f17;
+  --surface: #111827;
+  --surface-secondary: #162032;
+  --surface-hover: #1c283f;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border: #1f293d;
+  --border-subtle: #162032;
+  --primary: #6366f1;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-size: 14px; /* Standardize baseline for high information-density SaaS layout */
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  html.light {
+    color-scheme: light;
+  }
+
+  body {
+    @apply bg-slate-50 dark:bg-[#0b0f17] text-slate-800 dark:text-slate-100 antialiased font-sans text-sm selection:bg-brand-500/20 selection:text-brand-900 dark:selection:bg-brand-500/30 dark:selection:text-brand-200;
+  }
+
+  body,
+  nav,
+  aside,
+  header,
+  footer,
+  main {
+    transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-slate-900 dark:text-slate-50 tracking-tight;
+  }
+}
+
+@layer components {
+  /* Typography Scale Classes */
+  .page-title {
+    @apply text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-50;
+  }
+
+  .section-heading {
+    @apply text-lg sm:text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-100;
+  }
+
+  .card-heading {
+    @apply text-base font-semibold text-slate-900 dark:text-slate-100;
+  }
+
+  .body-text {
+    @apply text-sm leading-relaxed text-slate-600 dark:text-slate-300;
+  }
+
+  .secondary-text {
+    @apply text-xs text-slate-500 dark:text-slate-400;
+  }
+
+  .label-text {
+    @apply text-2xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400;
+  }
+
+  .metadata-text {
+    @apply text-2xs text-slate-400 dark:text-slate-500 font-medium;
+  }
+
+  /* Compact Button & Form Utilities */
+  .btn-compact-primary {
+    @apply inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-white bg-brand-600 hover:bg-brand-700 active:bg-brand-800 rounded-lg shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-brand-500/40 disabled:opacity-60 cursor-pointer;
+  }
+
+  .btn-compact-secondary {
+    @apply inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 active:bg-slate-100 dark:active:bg-slate-600 border border-slate-200 dark:border-slate-700 rounded-lg shadow-subtle transition-all focus:outline-none focus:ring-2 focus:ring-slate-300 dark:focus:ring-slate-600 disabled:opacity-60 cursor-pointer;
+  }
+
+  .input-compact {
+    @apply block w-full px-3 py-2 text-sm text-slate-800 dark:text-slate-100 bg-slate-50/80 dark:bg-slate-900/80 border border-slate-300 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500 focus:bg-white dark:focus:bg-slate-900 outline-none transition-all placeholder:text-xs placeholder:text-slate-400 dark:placeholder:text-slate-500;
+  }
+
+  /* Theme transition utility for card containers */
+  .theme-card {
+    @apply bg-white dark:bg-[#111827] border border-slate-200/90 dark:border-slate-800/90;
+    transition: background-color 200ms ease, border-color 200ms ease;
+  }
+}
+
+/* Custom scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f1f5f9;
+}
+
+.dark * {
+  scrollbar-color: #243044 #0b0f17;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.dark ::-webkit-scrollbar-track,
+.dark::-webkit-scrollbar-track {
+  background: #0b0f17;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb,
+.dark::-webkit-scrollbar-thumb {
+  background: #243044;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover,
+.dark::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Profile navigation horizontal scroller */
+.profile-nav-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+.dark .profile-nav-scroll {
+  scrollbar-color: #243044 transparent;
+}
+
+.profile-nav-scroll::-webkit-scrollbar {
+  height: 4px;
+}
+
+.profile-nav-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.profile-nav-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+.dark .profile-nav-scroll::-webkit-scrollbar-thumb {
+  background: #243044; /* darker shade for dark mode scroller */
+  border-radius: 9999px;
+}
+
+.dark .profile-nav-scroll::-webkit-scrollbar-thumb:hover {
+  background: #37475f;
+}
+
+/* Glass effect */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.dark .glass-panel {
+  background: rgba(17, 24, 39, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+
