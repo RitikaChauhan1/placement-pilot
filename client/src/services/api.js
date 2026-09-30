@@ -78,6 +78,156 @@ export const profileApi = {
       method: 'PUT',
       body: JSON.stringify(profileData),
     }),
+
+  // Education
+  addEducation: (data) =>
+    request('/profile/education', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+  updateEducation: (id, data) =>
+    request(`/profile/education/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+    }),
+  deleteEducation: (id) =>
+    request(`/profile/education/${id}`, {
+      method: 'DELETE',
+    }),
+
+  // Skills
+  addSkill: (data) =>
+    request('/profile/skills', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+  updateSkill: (id, data) =>
+    request(`/profile/skills/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+    }),
+  deleteSkill: (id) =>
+    request(`/profile/skills/${id}`, {
+      method: 'DELETE',
+    }),
+
+  // Experience
+  addExperience: (data) =>
+    request('/profile/experience', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+  updateExperience: (id, data) =>
+    request(`/profile/experience/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+    }),
+  deleteExperience: (id) =>
+    request(`/profile/experience/${id}`, {
+      method: 'DELETE',
+    }),
+
+  // Projects
+  addProject: (data) =>
+    request('/profile/projects', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+  updateProject: (id, data) =>
+    request(`/profile/projects/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+    }),
+  deleteProject: (id) =>
+    request(`/profile/projects/${id}`, {
+      method: 'DELETE',
+    }),
+
+  // Achievements
+  addAchievement: (data) =>
+    request('/profile/achievements', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+  updateAchievement: (id, data) =>
+    request(`/profile/achievements/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+    }),
+  deleteAchievement: (id) =>
+    request(`/profile/achievements/${id}`, {
+      method: 'DELETE',
+    }),
+
+  // Certifications
+  addCertification: (data) =>
+    request('/profile/certifications', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+  updateCertification: (id, data) =>
+    request(`/profile/certifications/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+    }),
+  deleteCertification: (id) =>
+    request(`/profile/certifications/${id}`, {
+      method: 'DELETE',
+    }),
+
+  // Coding Profiles
+  addCodingProfile: (data) =>
+    request('/profile/coding-profiles', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+  updateCodingProfile: (id, data) =>
+    request(`/profile/coding-profiles/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+    }),
+  deleteCodingProfile: (id) =>
+    request(`/profile/coding-profiles/${id}`, {
+      method: 'DELETE',
+    }),
+
+  // Socials
+  addSocial: (data) =>
+    request('/profile/socials', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+  updateSocial: (id, data) =>
+    request(`/profile/socials/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+    }),
+  deleteSocial: (id) =>
+    request(`/profile/socials/${id}`, {
+      method: 'DELETE',
+    }),
+
+  // Resume
+  updateResume: (data) =>
+    request('/profile/resume', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+  deleteResume: () =>
+    request('/profile/resume', {
+      method: 'DELETE',
+    }),
+
+  // Placement Target
+  getPlacementTarget: () =>
+    request('/profile/placement-target', {
+      method: 'GET',
+    }),
+  updatePlacementTarget: (data) =>
+    request('/profile/placement-target', {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+    }),
 };
 
 export const dashboardApi = {

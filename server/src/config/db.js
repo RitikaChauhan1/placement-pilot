@@ -41,16 +41,271 @@ const seedMemoryData = () => {
     memoryStore.profiles.push({
       id: 1,
       user_id: 1,
-      college: 'National Institute of Technology, Surathkal',
-      degree: 'B.Tech in Computer Science & Engineering',
+      name: 'Ritika Chauhan',
+      title: 'Software Developer / Computer Science Student',
+      headline: 'Aspiring SDE | Full-Stack & Algorithm Enthusiast | Pre-Final Year CSE',
+      location: 'Surathkal, Karnataka, India',
+      college: 'National Institute of Technology',
+      degree: 'B.Tech',
+      branch: 'Computer Science & Engineering',
       graduation_year: '2026',
-      skills: 'Data Structures, Algorithms, React.js, Node.js, SQL, System Design, REST APIs',
-      programming_languages: 'C++, Java, Python, JavaScript',
+      phone: '+91 98765 43210',
+      bio: 'Computer Science student passionate about software development, AI and building scalable products. Actively practicing Data Structures & Algorithms, System Design fundamentals, and modern web architectures. Seeking software engineering internships and full-time SDE roles.',
+      avatar_url: '',
+      job_status: 'Open to Software Development Roles',
       target_role: 'Software Development Engineer',
       target_companies: 'Accenture, Google, Microsoft, Amazon, TCS Digital',
       interview_date: '2026-10-26',
-      readiness_percentage: 65,
-      created_at: new Date().toISOString()
+      preferred_technologies: 'React, Node.js, C++, SQL, System Design',
+      target_salary: '14 - 24 LPA',
+      job_type: 'Full-time / Internship',
+      readiness_percentage: 68,
+      created_at: new Date().toISOString(),
+
+      stats: {
+        dsa_problems: 124,
+        projects: 3,
+        certifications: 3,
+        achievements: 4,
+      },
+
+      education: [
+        {
+          id: 1,
+          institution: 'National Institute of Technology',
+          degree: 'Bachelor of Technology',
+          field_of_study: 'Computer Science & Engineering',
+          start_year: '2022',
+          end_year: '2026',
+          period: '2022 - 2026',
+          grade: '8.85 CGPA',
+          location: 'Surathkal, India',
+          description: 'Focus on Data Structures, Algorithms, DBMS, Operating Systems, Computer Networks.',
+          coursework: ['Data Structures & Algorithms', 'DBMS', 'Operating Systems', 'Computer Networks']
+        },
+        {
+          id: 2,
+          institution: 'Delhi Public School',
+          degree: 'Senior Secondary Education',
+          field_of_study: 'CBSE, Science (PCM + CS)',
+          start_year: '2020',
+          end_year: '2022',
+          period: '2020 - 2022',
+          grade: '95.4%',
+          location: 'New Delhi, India',
+          description: 'Graduated with Distinction in Computer Science and Mathematics.',
+          coursework: ['Physics', 'Chemistry', 'Mathematics', 'Computer Science (Python)']
+        }
+      ],
+
+      skills_list: [
+        { id: 1, name: 'C++', category: 'Programming Languages', proficiency: 'Advanced' },
+        { id: 2, name: 'Java', category: 'Programming Languages', proficiency: 'Advanced' },
+        { id: 3, name: 'Python', category: 'Programming Languages', proficiency: 'Intermediate' },
+        { id: 4, name: 'JavaScript', category: 'Programming Languages', proficiency: 'Advanced' },
+        { id: 5, name: 'React', category: 'Frontend', proficiency: 'Advanced' },
+        { id: 6, name: 'Tailwind CSS', category: 'Frontend', proficiency: 'Advanced' },
+        { id: 7, name: 'Node.js', category: 'Backend', proficiency: 'Intermediate' },
+        { id: 8, name: 'Express.js', category: 'Backend', proficiency: 'Intermediate' },
+        { id: 9, name: 'PostgreSQL', category: 'Database', proficiency: 'Advanced' },
+        { id: 10, name: 'MongoDB', category: 'Database', proficiency: 'Intermediate' },
+        { id: 11, name: 'Docker', category: 'Cloud', proficiency: 'Beginner' },
+        { id: 12, name: 'Git & GitHub', category: 'Tools', proficiency: 'Advanced' },
+        { id: 13, name: 'REST APIs', category: 'Backend', proficiency: 'Advanced' },
+        { id: 14, name: 'Data Structures & Algorithms', category: 'Other', proficiency: 'Advanced' }
+      ],
+
+      experience: [
+        {
+          id: 1,
+          role: 'Software Engineering Intern',
+          company: 'TechNovation Labs',
+          employment_type: 'Internship',
+          location: 'Remote',
+          start_date: 'May 2025',
+          end_date: 'July 2025',
+          period: 'May 2025 - July 2025',
+          currently_working: false,
+          description: 'Engineered responsive frontend modules using React and integrated REST APIs with PostgreSQL backend. Optimized client-side bundle size by 24% and authored unit tests.',
+          technologies: 'React, Node.js, PostgreSQL, REST APIs'
+        },
+        {
+          id: 2,
+          role: 'Open Source Contributor',
+          company: 'GirlScript Summer of Code',
+          employment_type: 'Internship',
+          location: 'Remote',
+          start_date: 'Oct 2024',
+          end_date: 'Dec 2024',
+          period: 'Oct 2024 - Dec 2024',
+          currently_working: false,
+          description: 'Contributed 12+ pull requests to developer productivity tools, fixing accessibility issues and refactoring state handling in React repositories.',
+          technologies: 'React, JavaScript, Git, Documentation'
+        }
+      ],
+
+      projects: [
+        {
+          id: 1,
+          title: 'PlacementPilot - AI Placement Preparation System',
+          description: 'Full-stack platform tracking student readiness, personalized study plans, DSA focus topics, and company mock tests.',
+          technologies: 'React, Node.js, Express, PostgreSQL, Tailwind CSS',
+          tags: ['React', 'Node.js', 'Express', 'PostgreSQL', 'Tailwind CSS'],
+          github: 'https://github.com/ritikachauhan/placement-pilot',
+          live: 'https://placementpilot.dev',
+          start_date: 'Aug 2026',
+          end_date: 'Present',
+          role: 'Lead Full-Stack Developer',
+          featured: true
+        },
+        {
+          id: 2,
+          title: 'DevCollab - Realtime Collaborative Code Canvas',
+          description: 'Web-based interactive code editor supporting multi-user synchronization with WebSockets, syntax highlighting, and live compilation.',
+          technologies: 'React, Socket.io, Monaco Editor, Node.js',
+          tags: ['React', 'Socket.io', 'Monaco Editor', 'Node.js'],
+          github: 'https://github.com/ritikachauhan/devcollab',
+          live: 'https://devcollab.demo',
+          start_date: 'Jan 2026',
+          end_date: 'Apr 2026',
+          role: 'Full-Stack Developer',
+          featured: true
+        },
+        {
+          id: 3,
+          title: 'Algorithm Visualizer Suite',
+          description: 'Interactive graphical visualization of graph algorithms (Dijkstra, BFS, DFS) and sorting algorithms with step-by-step playback.',
+          technologies: 'JavaScript, Canvas API, Algorithms, CSS3',
+          tags: ['JavaScript', 'Canvas API', 'Algorithms', 'CSS3'],
+          github: 'https://github.com/ritikachauhan/algo-visualizer',
+          live: 'https://algoviz.demo',
+          start_date: 'Sep 2025',
+          end_date: 'Nov 2025',
+          role: 'Frontend Developer',
+          featured: false
+        }
+      ],
+
+      achievements: [
+        {
+          id: 1,
+          title: 'Global Rank 420 in LeetCode Biweekly Contest',
+          organization: 'LeetCode',
+          date: 'Aug 2025',
+          achievement_url: 'https://leetcode.com/ritikachauhan',
+          certificate_url: '',
+          description: 'Ranked in the top 2% of over 25,000 international participants by solving 4 out of 4 algorithmic problems under contest time constraints.'
+        },
+        {
+          id: 2,
+          title: 'Finalist - Smart India Hackathon (SIH)',
+          organization: 'Ministry of Education, Govt. of India',
+          date: 'Nov 2024',
+          achievement_url: 'https://sih.gov.in',
+          certificate_url: '',
+          description: 'Developed an automated curriculum gap identification platform with an agile team of 6 engineers.'
+        },
+        {
+          id: 3,
+          title: '5-Star Coder in Problem Solving',
+          organization: 'HackerRank',
+          date: 'Jan 2025',
+          achievement_url: 'https://hackerrank.com',
+          certificate_url: '',
+          description: 'Attained Gold Badge across Data Structures and Algorithms domain problem sets.'
+        },
+        {
+          id: 4,
+          title: 'Academic Excellence Merit Scholarship',
+          organization: 'NIT Surathkal Academic Council',
+          date: '2023 - 2024',
+          achievement_url: '',
+          certificate_url: '',
+          description: 'Awarded for maintaining top 5 percentile departmental CGPA in Computer Science Engineering.'
+        }
+      ],
+
+      certifications: [
+        {
+          id: 1,
+          name: 'AWS Certified Cloud Practitioner',
+          issuing_organization: 'Amazon Web Services (AWS)',
+          issue_date: 'June 2026',
+          expiry_date: 'June 2029',
+          credential_id: 'AWS-CCP-984210',
+          credential_url: 'https://aws.amazon.com/verification'
+        },
+        {
+          id: 2,
+          name: 'Meta Front-End Developer Professional Certificate',
+          issuing_organization: 'Meta / Coursera',
+          issue_date: 'Mar 2025',
+          expiry_date: '',
+          credential_id: 'META-FE-77219',
+          credential_url: 'https://coursera.org/verify/professional-cert/meta'
+        },
+        {
+          id: 3,
+          name: 'PostgreSQL Database Administration & Queries',
+          issuing_organization: 'Udemy / Database Institute',
+          issue_date: 'Dec 2024',
+          expiry_date: '',
+          credential_id: 'UC-9014298',
+          credential_url: 'https://udemy.com/certificate/UC-9014298'
+        }
+      ],
+
+      coding_profiles: [
+        {
+          id: 1,
+          platform: 'LeetCode',
+          username: 'ritikachauhan',
+          url: 'https://leetcode.com/ritikachauhan',
+          rating: 1782,
+          solved: 124
+        },
+        {
+          id: 2,
+          platform: 'CodeChef',
+          username: 'ritikac',
+          url: 'https://codechef.com/users/ritikac',
+          rating: 1640,
+          stars: '3★'
+        },
+        {
+          id: 3,
+          platform: 'GeeksforGeeks',
+          username: 'ritika_c',
+          url: 'https://geeksforgeeks.org/user/ritika_c',
+          score: 412,
+          solved: 96
+        },
+        {
+          id: 4,
+          platform: 'GitHub',
+          username: 'ritikachauhan',
+          url: 'https://github.com/ritikachauhan'
+        }
+      ],
+
+      socials: [
+        { id: 1, platform: 'GitHub', display_name: 'github.com/ritikachauhan', url: 'https://github.com/ritikachauhan' },
+        { id: 2, platform: 'LinkedIn', display_name: 'linkedin.com/in/ritikachauhan', url: 'https://linkedin.com/in/ritikachauhan' },
+        { id: 3, platform: 'Portfolio', display_name: 'ritikachauhan.dev', url: 'https://ritikachauhan.dev' },
+        { id: 4, platform: 'Twitter/X', display_name: '@ritikac_dev', url: 'https://twitter.com/ritikac_dev' }
+      ],
+
+      resume: {
+        fileName: 'Ritika_Chauhan_Resume.pdf',
+        url: '#',
+        uploadDate: '28 Sep 2026',
+        fileSize: '420 KB'
+      },
+
+      preferences: {
+        job_status: 'Actively Looking',
+        profile_visibility: 'Public'
+      }
     });
     memoryStore.nextProfileId = 2;
 
