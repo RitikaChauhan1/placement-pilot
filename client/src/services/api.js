@@ -115,6 +115,53 @@ export const studyPlanApi = {
       method: 'PUT',
       body: JSON.stringify({ dailyStudyHours }),
     }),
+
+  aiChat: (message) =>
+    request('/study-plan/ai/chat', {
+      method: 'POST',
+      body: JSON.stringify({ message }),
+    }),
+
+  applyAiChanges: (proposal) =>
+    request('/study-plan/ai/apply-changes', {
+      method: 'POST',
+      body: JSON.stringify({ proposal }),
+    }),
+
+  createTask: (taskData) =>
+    request('/study-plan/tasks', {
+      method: 'POST',
+      body: JSON.stringify(taskData),
+    }),
+
+  updateTask: (id, updates) =>
+    request(`/study-plan/tasks/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(updates),
+    }),
+
+  deleteTask: (id) =>
+    request(`/study-plan/tasks/${id}`, {
+      method: 'DELETE',
+    }),
+
+  searchTopics: (params = {}) => {
+    const query = new URLSearchParams(params).toString();
+    return request(`/study-plan/topics/search${query ? `?${query}` : ''}`, {
+      method: 'GET',
+    });
+  },
+
+  addTopicToPlan: (topicData) =>
+    request('/study-plan/topics/add-to-plan', {
+      method: 'POST',
+      body: JSON.stringify(topicData),
+    }),
+
+  getResources: (category = 'All') =>
+    request(`/study-plan/resources?category=${encodeURIComponent(category)}`, {
+      method: 'GET',
+    }),
 };
 
 export default {
