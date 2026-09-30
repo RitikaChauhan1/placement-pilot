@@ -3,25 +3,18 @@ import { Map, Calendar, CalendarDays, BookOpen, Layers } from 'lucide-react';
 
 export default function PlanTabs({
   activeTab,
-  onSelectTab,
-  tasksCount = 0,
-  completedTasksCount = 0
+  onSelectTab
 }) {
   const tabs = [
     { id: 'roadmap', label: 'Roadmap', icon: Map },
-    {
-      id: 'daily',
-      label: 'Daily Plan',
-      icon: Calendar,
-      badge: `${completedTasksCount}/${tasksCount}`
-    },
+    { id: 'daily', label: 'Daily Plan', icon: Calendar },
     { id: 'weekly', label: 'Weekly Plan', icon: CalendarDays },
     { id: 'topics', label: 'Topics', icon: Layers },
     { id: 'resources', label: 'Resources', icon: BookOpen },
   ];
 
   return (
-    <div className="border-b border-border/70 flex items-center gap-1 sm:gap-2 overflow-x-auto no-scrollbar pt-2">
+    <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1">
       {tabs.map((tab) => {
         const Icon = tab.icon;
         const isActive = activeTab === tab.id;
@@ -30,25 +23,14 @@ export default function PlanTabs({
           <button
             key={tab.id}
             onClick={() => onSelectTab(tab.id)}
-            className={`flex items-center gap-2 px-3 sm:px-4 py-2.5 text-xs sm:text-sm font-semibold rounded-t-lg transition-all relative border-b-2 whitespace-nowrap ${
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold rounded-lg transition-all whitespace-nowrap ${
               isActive
-                ? 'text-primary border-primary bg-primary/5'
-                : 'text-muted-foreground border-transparent hover:text-foreground hover:bg-muted/40'
+                ? 'bg-[#1d4ed8] text-white shadow-xs'
+                : 'text-slate-400 hover:text-white hover:bg-slate-800/40'
             }`}
           >
-            <Icon className={`w-4 h-4 ${isActive ? 'text-primary' : 'text-muted-foreground'}`} />
+            <Icon className="w-3.5 h-3.5" />
             <span>{tab.label}</span>
-            {tab.badge && (
-              <span
-                className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
-                  isActive
-                    ? 'bg-primary text-primary-foreground'
-                    : 'bg-muted text-muted-foreground'
-                }`}
-              >
-                {tab.badge}
-              </span>
-            )}
           </button>
         );
       })}

@@ -16,6 +16,7 @@ import PlanRegenerationModal from '../components/studyPlan/PlanRegenerationModal
 import StudyTimeEditorModal from '../components/studyPlan/StudyTimeEditorModal';
 import PreparationFocusModal from '../components/studyPlan/PreparationFocusModal';
 import TargetMismatchAlert from '../components/studyPlan/TargetMismatchAlert';
+import AddTaskModal from '../components/studyPlan/AddTaskModal';
 
 import {
   Sparkles,
@@ -52,7 +53,9 @@ export default function StudyPlanPage() {
   const [isRegenerateModalOpen, setIsRegenerateModalOpen] = useState(false);
   const [isHoursModalOpen, setIsHoursModalOpen] = useState(false);
   const [isFocusModalOpen, setIsFocusModalOpen] = useState(false);
+  const [isAddTaskModalOpen, setIsAddTaskModalOpen] = useState(false);
   const [isMobileAiOpen, setIsMobileAiOpen] = useState(false);
+  const [quickPrompt, setQuickPrompt] = useState('');
   const [successBanner, setSuccessBanner] = useState('');
 
   // Fetch active study plan
@@ -341,6 +344,14 @@ export default function StudyPlanPage() {
                 plan={planData.plan}
                 phases={planData.phases}
                 tasks={planData.tasks}
+                onToggleTask={handleToggleTask}
+                onOpenAddTask={() => setIsAddTaskModalOpen(true)}
+                onOpenQuickAction={(action) => {
+                  if (action === 'add_topic') setActiveTab('topics');
+                  else if (action === 'remove_topic') setQuickPrompt('Remove Operating Systems from my study plan.');
+                  else if (action === 'adjust_time') setIsHoursModalOpen(true);
+                  else if (action === 'focus_weak') setQuickPrompt('Focus on weak areas: Binary Search and SQL Joins.');
+                }}
               />
             )}
 
@@ -377,6 +388,7 @@ export default function StudyPlanPage() {
           <AIStudyPlanner
             userName={user?.full_name?.split(' ')[0] || 'Ritika'}
             onPlanUpdated={handleAiPlanUpdated}
+            quickTriggerPrompt={quickPrompt}
           />
         </div>
       </div>
@@ -430,6 +442,13 @@ export default function StudyPlanPage() {
           setSuccessBanner('Preparation focus tags updated.');
           setTimeout(() => setSuccessBanner(''), 3000);
         }}
+      />
+
+      {/* Add Task Modal */}
+      <AddTaskModal
+        isOpen={isAddTaskModalOpen}
+        onClose={() => setIsAddTaskModalOpen(false)}
+        onAddTask={handleAddTask}
       />
     </div>
   );

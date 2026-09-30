@@ -8,6 +8,9 @@ export default {
   theme: {
     extend: {
       colors: {
+        border: 'var(--border, #1f293d)',
+        card: 'var(--surface, #111827)',
+        background: 'var(--background, #0b0f17)',
         theme: {
           bg: 'var(--background)',
           surface: 'var(--surface)',

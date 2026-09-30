@@ -5,13 +5,8 @@ import {
   Clock,
   MoreVertical,
   Plus,
-  Play,
-  RotateCcw,
-  ExternalLink,
   ChevronRight,
-  Sparkles,
-  Calendar,
-  AlertCircle
+  Calendar
 } from 'lucide-react';
 import AddTaskModal from './AddTaskModal';
 import EditTaskModal from './EditTaskModal';
@@ -31,13 +26,10 @@ export default function DailyPlanTab({
   const [deletingTask, setDeletingTask] = useState(null);
   const [activeMenuTaskId, setActiveMenuTaskId] = useState(null);
 
-  // Filter tasks for this date (or fallback to all if tasks don't have explicit dates)
-  const dayTasks = tasks;
-  const completedCount = dayTasks.filter((t) => t.completed).length;
-  const totalCount = dayTasks.length;
+  const completedCount = tasks.filter((t) => t.completed).length;
+  const totalCount = tasks.length;
   const progressPct = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
 
-  // Format date display
   const formatDateHeading = (dateStr) => {
     try {
       const d = new Date(dateStr);
@@ -55,80 +47,68 @@ export default function DailyPlanTab({
   const getCategoryBadgeClass = (category) => {
     switch (category) {
       case 'DSA':
-        return 'bg-blue-500/10 text-blue-400 border-blue-500/20';
+        return 'bg-blue-500/15 text-blue-400 border border-blue-500/25';
       case 'SQL':
-        return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
+        return 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/25';
       case 'Core CS':
-        return 'bg-purple-500/10 text-purple-400 border-purple-500/20';
+        return 'bg-purple-500/15 text-purple-400 border border-purple-500/25';
       case 'Frontend':
-        return 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20';
+        return 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/25';
       case 'Aptitude':
-        return 'bg-amber-500/10 text-amber-400 border-amber-500/20';
+        return 'bg-amber-500/15 text-amber-400 border border-amber-500/25';
       case 'Mock Interview':
-        return 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20';
+        return 'bg-pink-500/15 text-pink-400 border border-pink-500/25';
       default:
-        return 'bg-muted text-muted-foreground border-border';
+        return 'bg-slate-800 text-slate-300 border border-slate-700';
     }
   };
 
   const getPriorityBadgeClass = (priority) => {
     switch (priority) {
       case 'High':
-        return 'text-red-400 bg-red-500/10 border-red-500/20';
+        return 'text-red-400 bg-red-500/15 border border-red-500/25';
       case 'Medium':
-        return 'text-amber-400 bg-amber-500/10 border-amber-500/20';
+        return 'text-amber-400 bg-amber-500/15 border border-amber-500/25';
       case 'Low':
-        return 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20';
+        return 'text-emerald-400 bg-emerald-500/15 border border-emerald-500/25';
       default:
-        return 'text-muted-foreground bg-muted border-border';
+        return 'text-slate-400 bg-slate-800 border border-slate-700';
     }
   };
 
   const getActionDetails = (task) => {
-    if (task.action_route) {
-      return { route: task.action_route, label: task.completed ? 'Review' : 'Start Practice' };
-    }
-    if (task.category === 'DSA') {
-      return { route: '/dsa', label: task.completed ? 'Review' : 'Start Practice' };
-    }
-    if (task.category === 'SQL') {
-      return { route: '/sql', label: task.completed ? 'Review' : 'Start Practice' };
-    }
-    if (task.category === 'Mock Interview') {
-      return { route: '/mock-interviews', label: 'View Simulation' };
-    }
-    return { route: '/study-plan', label: task.completed ? 'Review' : 'View' };
+    if (task.category === 'DSA') return { route: '/dsa', label: task.completed ? 'Start Again' : 'Start' };
+    if (task.category === 'SQL') return { route: '/sql', label: task.completed ? 'Start Again' : 'Start' };
+    return { route: '/study-plan', label: task.completed ? 'View' : 'Start' };
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       {/* Day Header & Progress Bar */}
-      <div className="p-4 rounded-xl bg-card border border-border/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="p-4 rounded-xl bg-[#0e1424] border border-slate-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <Calendar className="w-4 h-4 text-primary" />
-            <h2 className="text-base sm:text-lg font-bold text-foreground">
+            <span className="text-amber-400 text-xs">✦</span>
+            <h2 className="text-sm sm:text-base font-bold text-white">
               {formatDateHeading(selectedDate)}
             </h2>
           </div>
-          <div className="flex items-center gap-3 mt-1.5 text-xs text-muted-foreground">
+          <div className="flex items-center gap-2 mt-1 text-xs text-slate-400">
             <span>
-              <strong className="text-foreground">{completedCount}</strong> / {totalCount} completed
+              <strong className="text-white">{completedCount}</strong> / {totalCount} completed
             </span>
-            <span>•</span>
-            <span>{Math.round(totalCount * 0.5 * 10) / 10} hrs planned</span>
           </div>
         </div>
 
         <div className="flex items-center gap-4">
           <div className="w-36 sm:w-48">
             <div className="flex items-center justify-between text-[11px] mb-1">
-              <span className="text-muted-foreground">Day Progress</span>
-              <span className="font-bold text-primary">{progressPct}%</span>
+              <span className="text-slate-400">Progress</span>
+              <span className="font-bold text-cyan-400">{progressPct}%</span>
             </div>
-            <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
+            <div className="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
               <div
-                className="h-full rounded-full bg-gradient-to-r from-primary to-accent transition-all duration-500"
+                className="h-full rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-500"
                 style={{ width: `${progressPct}%` }}
               />
             </div>
@@ -136,7 +116,7 @@ export default function DailyPlanTab({
 
           <button
             onClick={() => setIsAddModalOpen(true)}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground shadow-xs transition-colors shrink-0"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-[#1d4ed8] hover:bg-blue-600 text-white shadow-xs transition-colors shrink-0"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>Add Task</span>
@@ -145,178 +125,95 @@ export default function DailyPlanTab({
       </div>
 
       {/* Task List */}
-      {dayTasks.length === 0 ? (
-        <div className="p-8 text-center rounded-xl bg-card border border-dashed border-border">
-          <p className="text-sm text-muted-foreground">No tasks scheduled for this day.</p>
-          <button
-            onClick={() => setIsAddModalOpen(true)}
-            className="mt-3 inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-primary text-primary-foreground"
-          >
-            <Plus className="w-3.5 h-3.5" />
-            Add First Task
-          </button>
-        </div>
-      ) : (
-        <div className="space-y-2.5">
-          {dayTasks.map((task) => {
-            const isCompleted = task.completed;
-            const action = getActionDetails(task);
-            const isMenuOpen = activeMenuTaskId === task.id;
+      <div className="space-y-2">
+        {tasks.map((task) => {
+          const isCompleted = task.completed;
+          const action = getActionDetails(task);
+          const isMenuOpen = activeMenuTaskId === task.id;
 
-            return (
-              <div
-                key={task.id}
-                className={`p-3.5 rounded-xl border transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
-                  isCompleted
-                    ? 'bg-card/40 border-border/40 opacity-80'
-                    : 'bg-card border-border/70 hover:border-primary/40 shadow-xs'
-                }`}
-              >
-                {/* Left: Checkbox + Title + Badges */}
-                <div className="flex items-start sm:items-center gap-3 flex-1 min-w-0">
-                  <button
-                    onClick={() => onToggleTask(task.id)}
-                    className="mt-0.5 sm:mt-0 text-muted-foreground hover:text-primary transition-colors shrink-0"
-                    title={isCompleted ? 'Mark as incomplete' : 'Mark as complete'}
-                  >
-                    {isCompleted ? (
-                      <CheckCircle2 className="w-5 h-5 text-emerald-400 fill-emerald-500/10" />
-                    ) : (
-                      <Circle className="w-5 h-5 text-muted-foreground/60 hover:text-primary" />
-                    )}
-                  </button>
+          return (
+            <div
+              key={task.id}
+              className="p-3 rounded-xl bg-[#0e1424] border border-slate-800/80 hover:border-slate-700/80 transition-all flex items-center justify-between gap-3"
+            >
+              <div className="flex items-center gap-3 min-w-0">
+                <button
+                  onClick={() => onToggleTask(task.id)}
+                  className="shrink-0 text-slate-400 hover:text-emerald-400 transition-colors"
+                >
+                  {isCompleted ? (
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  ) : (
+                    <Circle className="w-4 h-4 text-slate-600" />
+                  )}
+                </button>
 
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span
-                        className={`text-sm font-semibold truncate ${
-                          isCompleted ? 'text-muted-foreground line-through' : 'text-foreground'
-                        }`}
-                      >
-                        {task.title}
-                      </span>
-                    </div>
-
-                    <div className="flex items-center gap-2 flex-wrap mt-1 text-[11px]">
-                      {/* Category Badge */}
-                      <span
-                        className={`px-2 py-0.5 rounded-md font-medium border ${getCategoryBadgeClass(
-                          task.category
-                        )}`}
-                      >
-                        {task.category || 'DSA'}
-                      </span>
-
-                      {/* Priority Badge */}
-                      <span
-                        className={`px-2 py-0.5 rounded-md font-medium border ${getPriorityBadgeClass(
-                          task.priority || 'Medium'
-                        )}`}
-                      >
-                        {task.priority || 'Medium'}
-                      </span>
-
-                      {/* Duration */}
-                      <span className="flex items-center gap-1 text-muted-foreground font-medium">
-                        <Clock className="w-3 h-3" />
-                        {task.duration || '30 min'}
-                      </span>
-
-                      {task.source === 'ai_generated' && (
-                        <span className="flex items-center gap-0.5 text-primary text-[10px] font-semibold">
-                          <Sparkles className="w-2.5 h-2.5" />
-                          AI Scheduled
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Right: Action Button + Three-dot Menu */}
-                <div className="flex items-center gap-2 self-end sm:self-auto shrink-0 relative">
-                  <Link
-                    to={action.route}
-                    className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5 ${
-                      isCompleted
-                        ? 'bg-muted hover:bg-muted/80 text-muted-foreground'
-                        : 'bg-primary/10 hover:bg-primary/20 text-primary border border-primary/25'
-                    }`}
-                  >
-                    <span>{action.label}</span>
-                    <ChevronRight className="w-3 h-3" />
-                  </Link>
-
-                  {/* Three-dot dropdown menu */}
-                  <div className="relative">
-                    <button
-                      onClick={() => setActiveMenuTaskId(isMenuOpen ? null : task.id)}
-                      className="p-1.5 rounded-lg border border-border/60 hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
-                      title="Task options"
-                    >
-                      <MoreVertical className="w-3.5 h-3.5" />
-                    </button>
-
-                    {isMenuOpen && (
-                      <div className="absolute right-0 mt-1 w-44 rounded-xl bg-card border border-border shadow-xl z-30 py-1 text-xs animate-in fade-in zoom-in-95">
-                        <button
-                          onClick={() => {
-                            setActiveMenuTaskId(null);
-                            setEditingTask(task);
-                          }}
-                          className="w-full text-left px-3 py-1.5 hover:bg-muted text-foreground transition-colors"
-                        >
-                          Edit Task
-                        </button>
-                        <button
-                          onClick={() => {
-                            setActiveMenuTaskId(null);
-                            onUpdateTask(task.id, {
-                              scheduled_date: '2026-10-01'
-                            });
-                          }}
-                          className="w-full text-left px-3 py-1.5 hover:bg-muted text-foreground transition-colors"
-                        >
-                          Reschedule to Tomorrow
-                        </button>
-                        <button
-                          onClick={() => {
-                            setActiveMenuTaskId(null);
-                            onUpdateTask(task.id, {
-                              priority: task.priority === 'High' ? 'Medium' : 'High'
-                            });
-                          }}
-                          className="w-full text-left px-3 py-1.5 hover:bg-muted text-foreground transition-colors"
-                        >
-                          Toggle Priority
-                        </button>
-                        <div className="border-t border-border my-1" />
-                        <button
-                          onClick={() => {
-                            setActiveMenuTaskId(null);
-                            setDeletingTask(task);
-                          }}
-                          className="w-full text-left px-3 py-1.5 hover:bg-destructive/10 text-destructive transition-colors"
-                        >
-                          Remove Task
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                </div>
+                <span className={`text-xs font-semibold truncate ${isCompleted ? 'text-slate-300' : 'text-slate-200'}`}>
+                  {task.title}
+                </span>
               </div>
-            );
-          })}
-        </div>
-      )}
 
-      {/* Add Task Modal */}
+              <div className="flex items-center gap-2 shrink-0 relative">
+                <span className={`text-[10px] px-2 py-0.5 rounded-md font-medium ${getCategoryBadgeClass(task.category)}`}>
+                  {task.category || 'DSA'}
+                </span>
+
+                <span className={`text-[10px] px-2 py-0.5 rounded-md font-medium ${getPriorityBadgeClass(task.priority || 'Medium')}`}>
+                  {task.priority || 'Medium'}
+                </span>
+
+                <span className="text-[11px] text-slate-400 hidden sm:inline">
+                  {task.duration || '30 min'}
+                </span>
+
+                <Link
+                  to={action.route}
+                  className="text-xs font-medium px-3 py-1 rounded-md bg-[#131b2e] hover:bg-[#1a253e] text-slate-200 border border-slate-700/60 transition-colors"
+                >
+                  {action.label}
+                </Link>
+
+                <button
+                  onClick={() => setActiveMenuTaskId(isMenuOpen ? null : task.id)}
+                  className="p-1 text-slate-500 hover:text-slate-300"
+                >
+                  <MoreVertical className="w-3.5 h-3.5" />
+                </button>
+
+                {isMenuOpen && (
+                  <div className="absolute right-0 top-8 w-44 rounded-xl bg-[#0f172a] border border-slate-800 shadow-xl z-30 py-1 text-xs">
+                    <button
+                      onClick={() => {
+                        setActiveMenuTaskId(null);
+                        setEditingTask(task);
+                      }}
+                      className="w-full text-left px-3 py-1.5 hover:bg-slate-800 text-slate-200"
+                    >
+                      Edit Task
+                    </button>
+                    <button
+                      onClick={() => {
+                        setActiveMenuTaskId(null);
+                        setDeletingTask(task);
+                      }}
+                      className="w-full text-left px-3 py-1.5 hover:bg-red-500/10 text-red-400"
+                    >
+                      Remove Task
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
       <AddTaskModal
         isOpen={isAddModalOpen}
         onClose={() => setIsAddModalOpen(false)}
         onAddTask={onAddTask}
       />
 
-      {/* Edit Task Modal */}
       <EditTaskModal
         isOpen={!!editingTask}
         onClose={() => setEditingTask(null)}
@@ -324,7 +221,6 @@ export default function DailyPlanTab({
         onSave={onUpdateTask}
       />
 
-      {/* Delete Confirmation Modal */}
       <ConfirmDeleteModal
         isOpen={!!deletingTask}
         onClose={() => setDeletingTask(null)}

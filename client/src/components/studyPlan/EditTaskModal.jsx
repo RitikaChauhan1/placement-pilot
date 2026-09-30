@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Edit2, Clock, Flag } from 'lucide-react';
+import { X, Edit2 } from 'lucide-react';
 
 export default function EditTaskModal({ isOpen, onClose, task, onSave }) {
   const [title, setTitle] = useState('');
@@ -43,18 +43,18 @@ export default function EditTaskModal({ isOpen, onClose, task, onSave }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-xs">
-      <div className="relative w-full max-w-md rounded-2xl bg-card border border-border p-6 shadow-2xl animate-in fade-in zoom-in-95">
-        <div className="flex items-center justify-between pb-3 border-b border-border">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-xs">
+      <div className="relative w-full max-w-md rounded-2xl bg-[#0e1424] border border-slate-800 p-6 shadow-2xl animate-in fade-in zoom-in-95">
+        <div className="flex items-center justify-between pb-3 border-b border-slate-800">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-blue-500/15 text-blue-400 flex items-center justify-center border border-blue-500/25">
               <Edit2 className="w-4 h-4" />
             </div>
-            <h3 className="text-base font-bold text-foreground">Edit Task</h3>
+            <h3 className="text-base font-bold text-white">Edit Task</h3>
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted"
+            className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/60"
           >
             <X className="w-5 h-5" />
           </button>
@@ -62,23 +62,23 @@ export default function EditTaskModal({ isOpen, onClose, task, onSave }) {
 
         <form onSubmit={handleSubmit} className="space-y-4 mt-4 text-xs sm:text-sm">
           <div>
-            <label className="block font-medium text-foreground mb-1">Task Title</label>
+            <label className="block font-medium text-slate-300 mb-1">Task Title</label>
             <input
               type="text"
               required
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full px-3 py-2 rounded-lg bg-muted/50 border border-border focus:border-primary focus:ring-1 focus:ring-primary text-foreground outline-hidden text-xs sm:text-sm"
+              className="w-full px-3 py-2 rounded-lg bg-[#131b2e] border border-slate-800 focus:border-indigo-500 text-slate-100 outline-hidden text-xs sm:text-sm"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block font-medium text-foreground mb-1">Category</label>
+              <label className="block font-medium text-slate-300 mb-1">Category</label>
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-muted/50 border border-border focus:border-primary focus:ring-1 focus:ring-primary text-foreground outline-hidden text-xs sm:text-sm"
+                className="w-full px-3 py-2 rounded-lg bg-[#131b2e] border border-slate-800 focus:border-indigo-500 text-slate-100 outline-hidden text-xs sm:text-sm"
               >
                 <option value="DSA">DSA</option>
                 <option value="SQL">SQL</option>
@@ -89,11 +89,11 @@ export default function EditTaskModal({ isOpen, onClose, task, onSave }) {
               </select>
             </div>
             <div>
-              <label className="block font-medium text-foreground mb-1">Duration</label>
+              <label className="block font-medium text-slate-300 mb-1">Duration</label>
               <select
                 value={duration}
                 onChange={(e) => setDuration(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-muted/50 border border-border focus:border-primary focus:ring-1 focus:ring-primary text-foreground outline-hidden text-xs sm:text-sm"
+                className="w-full px-3 py-2 rounded-lg bg-[#131b2e] border border-slate-800 focus:border-indigo-500 text-slate-100 outline-hidden text-xs sm:text-sm"
               >
                 <option value="15 min">15 min</option>
                 <option value="20 min">20 min</option>
@@ -106,11 +106,11 @@ export default function EditTaskModal({ isOpen, onClose, task, onSave }) {
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block font-medium text-foreground mb-1">Priority</label>
+              <label className="block font-medium text-slate-300 mb-1">Priority</label>
               <select
                 value={priority}
                 onChange={(e) => setPriority(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-muted/50 border border-border focus:border-primary focus:ring-1 focus:ring-primary text-foreground outline-hidden text-xs sm:text-sm"
+                className="w-full px-3 py-2 rounded-lg bg-[#131b2e] border border-slate-800 focus:border-indigo-500 text-slate-100 outline-hidden text-xs sm:text-sm"
               >
                 <option value="High">High</option>
                 <option value="Medium">Medium</option>
@@ -118,28 +118,28 @@ export default function EditTaskModal({ isOpen, onClose, task, onSave }) {
               </select>
             </div>
             <div>
-              <label className="block font-medium text-foreground mb-1">Scheduled Date</label>
+              <label className="block font-medium text-slate-300 mb-1">Scheduled Date</label>
               <input
                 type="date"
                 value={scheduledDate}
                 onChange={(e) => setScheduledDate(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-muted/50 border border-border focus:border-primary focus:ring-1 focus:ring-primary text-foreground outline-hidden text-xs sm:text-sm"
+                className="w-full px-3 py-2 rounded-lg bg-[#131b2e] border border-slate-800 focus:border-indigo-500 text-slate-100 outline-hidden text-xs sm:text-sm"
               />
             </div>
           </div>
 
-          <div className="flex items-center justify-end gap-2.5 pt-3 border-t border-border">
+          <div className="flex items-center justify-end gap-2.5 pt-3 border-t border-slate-800">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg bg-muted hover:bg-muted/80 text-foreground transition-colors"
+              className="px-4 py-2 text-xs font-semibold rounded-lg bg-[#131b2e] hover:bg-[#1a253e] text-slate-300 border border-slate-700/60 transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={saving || !title.trim()}
-              className="px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground transition-colors disabled:opacity-50"
+              className="px-4 py-2 text-xs font-semibold rounded-lg bg-[#1d4ed8] hover:bg-blue-600 text-white transition-colors disabled:opacity-50"
             >
               {saving ? 'Saving...' : 'Save Changes'}
             </button>
